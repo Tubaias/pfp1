@@ -237,54 +237,14 @@ int decompress2(string filename) {
 
 int main(int argc, char** argv) {
     string filename = argv[1];
-    //string filename1, filename2;
-
-    /*
-    chrono::duration<double> ctime, dctime, c2time, sctime;
-
-    int iter = 5;
-
-    for (int i = 0; i < iter; i++) {
-        filename1 = "F" + to_string(i);
-        filename2 = "F" + to_string(i) + ".vb";
-
-        auto cbegin = chrono::system_clock::now();
-        compress(filename1);
-        auto cend = chrono::system_clock::now();
-
-        auto dcbegin = chrono::system_clock::now();
-        decompress(filename2);
-        auto dcend = chrono::system_clock::now();
-
-        auto c2begin = chrono::system_clock::now();
-        compress2(filename1);
-        auto c2end = chrono::system_clock::now();
-
-        auto scbegin = chrono::system_clock::now();
-        sortCompress(filename1);
-        auto scend = chrono::system_clock::now();
-
-        ctime += cend - cbegin;
-        dctime += dcend - dcbegin;
-        c2time += c2end - c2begin;
-        sctime += scend - scbegin;
-    }
-
-    chrono::duration<double> cavg, dcavg, c2avg, scavg;
-    cavg = ctime / iter;
-    dcavg = dctime / iter;
-    c2avg = c2time / iter;
-    scavg = sctime / iter;
-
-    cout << "compression average: " << cavg.count() << "s\n";
-    cout << "compression 2 average: " << dcavg.count() << "s\n";
-    cout << "sort compression average: " << c2avg.count() << "s\n";
-    cout << "decompression average: " << scavg.count() << "s\n";
-    */
-
+    
     auto c2begin = chrono::system_clock::now();
     compress2(filename);
     auto c2end = chrono::system_clock::now();
+    
+    auto scbegin = chrono::system_clock::now();
+    sortCompress(filename);
+    auto scend = chrono::system_clock::now();
 
     auto dcbegin = chrono::system_clock::now();
     decompress2(filename + ".vb");
@@ -294,5 +254,6 @@ int main(int argc, char** argv) {
     chrono::duration<double> dctime = dcend - dcbegin;
 
     cout << "compression 2 took: " << c2time.count() << "s\n";
+    cout << "sort compression took: " << sctime.count() << "s\n";
     cout << "decompression took: " << dctime.count() << "s\n";
 }
