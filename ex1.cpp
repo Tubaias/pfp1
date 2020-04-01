@@ -241,13 +241,13 @@ int main(int argc, char** argv) {
         }
         chrono::duration<double> time = chrono::system_clock::now() - begin;
         cout << "compression took: " << time.count() << "s\n";
-    } else if (mode == "c2") {
+    } else if (mode == "sc") {
         auto begin = chrono::system_clock::now();
         for (int i = 0; i < reps; i++) {
-            compress2(filename);
+            sortCompress(filename);
         }
         chrono::duration<double> time = chrono::system_clock::now() - begin;
-        cout << "compression ver 2 took: " << time.count() << "s\n";
+        cout << "sort compression took: " << time.count() << "s\n";
     } else if (mode == "dc") {
         auto begin = chrono::system_clock::now();
         for (int i = 0; i < reps; i++) {
