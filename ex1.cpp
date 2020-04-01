@@ -11,9 +11,7 @@ using namespace std;
 int compress(string filename) {
     ifstream in(filename, ios::binary | ios::ate);
 
-    if (in.is_open()) {
-        cout << "file " << filename << " was opened successfully.\n";
-    } else {
+    if (!in.is_open()) {
         cout << "file " << filename << " could not be opened.\n";
         return 1;
     }
@@ -57,9 +55,7 @@ int compress(string filename) {
 int compress2(string filename) {
     ifstream in(filename, ios::binary | ios::ate);
 
-    if (in.is_open()) {
-        cout << "file " << filename << " was opened successfully.\n";
-    } else {
+    if (!in.is_open()) {
         cout << "file " << filename << " could not be opened.\n";
         return 1;
     }
@@ -103,9 +99,7 @@ int compress2(string filename) {
 int sortCompress(string filename) {
     ifstream in(filename, ios::binary | ios::ate);
 
-    if (in.is_open()) {
-        cout << "file " << filename << " was opened successfully.\n";
-    } else {
+    if (!in.is_open()) {
         cout << "file " << filename << " could not be opened.\n";
         return 1;
     }
