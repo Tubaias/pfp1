@@ -251,6 +251,7 @@ int main(int argc, char** argv) {
     auto dcend = chrono::system_clock::now();
 
     chrono::duration<double> c2time = c2end - c2begin;
+    chrono::duration<double> sctime = scend - scbegin;
     chrono::duration<double> dctime = dcend - dcbegin;
 
     cout << "compression 2 took: " << c2time.count() << "s\n";
