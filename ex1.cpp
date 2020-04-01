@@ -237,24 +237,31 @@ int decompress2(string filename) {
 
 int main(int argc, char** argv) {
     string filename = argv[1];
+    string mode = argv[2];
+    int reps = atoi(argv[3]);
     
-    auto c2begin = chrono::system_clock::now();
-    compress2(filename);
-    auto c2end = chrono::system_clock::now();
+    if (mode == "c") {
+        auto begin = chrono::system_clock::now();
+        for (int i = 0; i < reps; i++) {
+            compress2(filename);
+        }
+        chrono::duration<double> time = chrono::system_clock::now() - begin;
+        cout << "compression took: " << time.count() << "s\n";
+    } else if (mode == "c2") {
+        auto begin = chrono::system_clock::now();
+        for (int i = 0; i < reps; i++) {
+            compress2(filename);
+        }
+        chrono::duration<double> time = chrono::system_clock::now() - begin;
+        cout << "compression ver 2 took: " << time.count() << "s\n";
+    } else if (mode == "dc") {
+        auto begin = chrono::system_clock::now();
+        for (int i = 0; i < reps; i++) {
+            decompress2(filename + ".vb");
+        }
+        chrono::duration<double> time = chrono::system_clock::now() - begin;
+        cout << "decompression took: " << time.count() << "s\n";
+    }
     
-    auto scbegin = chrono::system_clock::now();
-    sortCompress(filename);
-    auto scend = chrono::system_clock::now();
-
-    auto dcbegin = chrono::system_clock::now();
-    decompress2(filename + ".vb");
-    auto dcend = chrono::system_clock::now();
-
-    chrono::duration<double> c2time = c2end - c2begin;
-    chrono::duration<double> sctime = scend - scbegin;
-    chrono::duration<double> dctime = dcend - dcbegin;
-
-    cout << "compression 2 took: " << c2time.count() << "s\n";
-    cout << "sort compression took: " << sctime.count() << "s\n";
-    cout << "decompression took: " << dctime.count() << "s\n";
+    return 0;
 }
